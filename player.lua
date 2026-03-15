@@ -1,13 +1,7 @@
 local Player = {
-
+	radius = 20,
+	x = 30,
+	y = 30
 }
 
-function Player.init()
-
-end
-
-function Player.draw()
-
-end
-
-return Player
+return Player;

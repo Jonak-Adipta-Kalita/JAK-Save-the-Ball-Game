@@ -1,20 +1,34 @@
-local const = require("constants")
-local Player = require("player")
-local Obstacle = require("obstacle")
+_G.love = require("love");
+
+local player = require("player");
+
+local game = {
+	state = {
+		menu = true,
+		paused = false,
+		running = false,
+		ended = false,
+	}
+}
 
 function love.load()
-	StateMachine = const.STATE_MACHINE
-
-	Player.init()
-end
-
-function love.keypressed(key)
-
+	love.window.setTitle("JAK Save the Ball Game")
+	love.mouse.setVisible(false)
 end
 
 function love.update(delta)
+	player.x, player.y = love.mouse.getPosition()
 end
 
 function love.draw()
-	Player.draw()
+	love.graphics.printf("FPS: " .. love.timer.getFPS(), love.graphics.newFont(16), 10, love.graphics.getHeight() - 30,
+		love.graphics.getWidth())
+
+	if game.state["running"] then
+		love.graphics.circle("fill", player.x, player.y, player.radius)
+	end
+
+	if not game.state["running"] then
+		love.graphics.circle("fill", player.x, player.y, player.radius / 2)
+	end
 end
