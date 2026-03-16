@@ -3,26 +3,28 @@ _G.love = require("love");
 math.randomseed(os.time())
 
 local Player = require("player");
-local Enemy = require("enemy");
 
 local game = require("game_state");
+local menu = require("menu");
+local enemies = require("enemies");
 
-local enemies = {}
-local player = Player()
+function love.mousepressed(x, y, button, istouch, presses)
+	menu.mousepressed(x, y, button, istouch, presses)
+end
 
 function love.load()
 	love.window.setTitle("JAK Save the Ball Game")
 	love.mouse.setVisible(false)
 
-	table.insert(enemies, 1, Enemy())
+	game.player = Player()
+
+	menu.load(game.buttons.menu_state)
 end
 
 function love.update(delta)
-	player:move()
+	game.player:move()
 
-	for i = 1, #enemies do
-		enemies[i]:move(player.x, player.y)
-	end
+	enemies.move()
 end
 
 function love.draw()
@@ -34,12 +36,9 @@ function love.draw()
 		love.graphics.getWidth()
 	);
 
-	player:draw()
+	menu.draw()
 
+	enemies.draw()
 
-	if game.state["running"] then
-		for i = 1, #enemies do
-			enemies[i]:draw()
-		end
-	end
+	game.player:draw()
 end

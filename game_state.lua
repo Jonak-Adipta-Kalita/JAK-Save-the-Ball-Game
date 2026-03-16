@@ -2,11 +2,19 @@ local Game = {
 	difficulty = 1,
 
 	state = {
-		menu = false,
+		menu = true,
 		paused = false,
-		running = true,
+		running = false,
 		ended = false,
-	}
+	},
+
+	buttons = {
+		menu_state = {}
+	},
+
+	enemies = {},
+
+	player = nil
 }
 
 return Game;
