@@ -16,10 +16,10 @@ local function startNewGame()
 	}
 end
 
-function menu.load(buttons_contaier)
-	buttons_contaier.play_game = Button("Play Game", startNewGame, nil, 120, 40)
-	buttons_contaier.settings = Button("Settings", nil, nil, 120, 40)
-	buttons_contaier.exit_game = Button("Exit Game", love.event.quit, nil, 120, 40)
+function menu.load(buttons_container)
+	buttons_container.play_game = Button("Play Game", startNewGame, nil, 120, 40)
+	buttons_container.settings = Button("Settings", nil, nil, 120, 40)
+	buttons_container.exit_game = Button("Exit Game", love.event.quit, nil, 120, 40)
 end
 
 function menu.mousepressed(x, y, button, istouch, pressed)
@@ -42,4 +42,4 @@ function menu.draw()
 	end
 end
 
-return menu;
+return { menu = menu, startNewGame = startNewGame };

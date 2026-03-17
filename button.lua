@@ -1,10 +1,10 @@
-function Button(text, func, func_param, width, height)
+function Button(text, func, func_params, width, height)
 	return {
 		width = width or 180,
 		height = height or 100,
 
 		func = func or function() end,
-		func_param = func_param,
+		func_params = func_params,
 
 		text = text or "No Text",
 
@@ -16,8 +16,8 @@ function Button(text, func, func_param, width, height)
 		checkPressed = function(self, mouse_x, mouse_y, cursor_radius)
 			if (mouse_x + cursor_radius >= self.button_x) and (mouse_x - cursor_radius <= self.button_x + self.width) then
 				if (mouse_y + cursor_radius >= self.button_y) and (mouse_y - cursor_radius <= self.button_y + self.height) then
-					if self.func_param then
-						self.func(self.func_param)
+					if self.func_params then
+						self.func(unpack(self.func_params))
 					else
 						self.func()
 					end

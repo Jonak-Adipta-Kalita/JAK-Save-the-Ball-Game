@@ -15,7 +15,7 @@ function enemies.move()
 					end
 				end
 			else
-				game:change_state("menu")
+				game:change_state("ended")
 			end
 		end
 	end

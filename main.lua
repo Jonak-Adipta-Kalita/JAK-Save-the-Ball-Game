@@ -3,17 +3,21 @@ _G.love = require("love");
 math.randomseed(os.time())
 
 local game = require("game_state");
-local menu = require("menu");
-local points = require("points")
-local fonts = require("fonts")
+local points = require("points");
+local fonts = require("fonts");
+local game_over = require("game_over");
 
 local Player = require("player");
 
 local enemies_file = require("enemies");
 local enemies = enemies_file.enemies;
 
+local menu_file = require("menu");
+local menu = menu_file.menu
+
 function love.mousepressed(x, y, button, istouch, presses)
 	menu.mousepressed(x, y, button, istouch, presses)
+	game_over.mousepressed(x, y, button, istouch, presses)
 end
 
 function love.load()
@@ -23,6 +27,7 @@ function love.load()
 	game.player = Player()
 
 	menu.load(game.buttons.menu_state)
+	game_over.load(game.buttons.ended_state)
 end
 
 function love.update(delta)
@@ -45,6 +50,7 @@ function love.draw()
 	);
 
 	menu.draw()
+	game_over.draw()
 
 	enemies.draw()
 

@@ -9,7 +9,8 @@ local game = {
 	},
 
 	buttons = {
-		menu_state = {}
+		menu_state = {},
+		ended_state = {}
 	},
 
 	enemies = {},
