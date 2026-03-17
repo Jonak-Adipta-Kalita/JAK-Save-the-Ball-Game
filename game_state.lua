@@ -1,4 +1,4 @@
-local Game = {
+local game = {
 	difficulty = 1,
 
 	state = {
@@ -14,7 +14,18 @@ local Game = {
 
 	enemies = {},
 
-	player = nil
+	player = nil,
+
+	points = 0,
+
+	levels = { 15, 30, 60, 120 }
 }
 
-return Game;
+function game.change_state(self, state)
+	self.state["menu"] = state == "menu";
+	self.state["paused"] = state == "paused";
+	self.state["running"] = state == "running";
+	self.state["ended"] = state == "ended";
+end
+
+return game;

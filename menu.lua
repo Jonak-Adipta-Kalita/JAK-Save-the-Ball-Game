@@ -1,15 +1,19 @@
-local Button = require("button")
-local Enemy = require("enemy");
-
+local enemies_file = require("enemies");
 local game = require("game_state");
+
+local Button = require("button")
+local Enemy = enemies_file.Enemy
 
 local menu = {}
 
 local function startNewGame()
-	game.state["menu"] = false
-	game.state["running"] = true
+	game:change_state("running")
 
-	table.insert(game.enemies, 1, Enemy())
+	game.points = 0;
+
+	game.enemies = {
+		Enemy()
+	}
 end
 
 function menu.load(buttons_contaier)

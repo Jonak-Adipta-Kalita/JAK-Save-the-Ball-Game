@@ -2,11 +2,14 @@ _G.love = require("love");
 
 math.randomseed(os.time())
 
-local Player = require("player");
-
 local game = require("game_state");
 local menu = require("menu");
-local enemies = require("enemies");
+local points = require("points")
+
+local Player = require("player");
+
+local enemies_file = require("enemies");
+local enemies = enemies_file.enemies;
 
 function love.mousepressed(x, y, button, istouch, presses)
 	menu.mousepressed(x, y, button, istouch, presses)
@@ -25,6 +28,8 @@ function love.update(delta)
 	game.player:move()
 
 	enemies.move()
+
+	points.update(delta)
 end
 
 function love.draw()
@@ -39,6 +44,8 @@ function love.draw()
 	menu.draw()
 
 	enemies.draw()
+
+	points.draw()
 
 	game.player:draw()
 end
