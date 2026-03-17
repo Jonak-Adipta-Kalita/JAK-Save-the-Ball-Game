@@ -1,4 +1,5 @@
 local game = require("game_state")
+local fonts = require("fonts")
 
 local points = {}
 
@@ -10,7 +11,7 @@ end
 
 function points.draw()
 	if game.state["running"] then
-		love.graphics.printf(math.floor(game.points), love.graphics.newFont(24), 0, 10, love.graphics.getWidth(),
+		love.graphics.printf(math.floor(game.points), fonts.medium.font, 0, 10, love.graphics.getWidth(),
 			"center")
 	end
 end

@@ -5,6 +5,7 @@ math.randomseed(os.time())
 local game = require("game_state");
 local menu = require("menu");
 local points = require("points")
+local fonts = require("fonts")
 
 local Player = require("player");
 
@@ -33,9 +34,11 @@ function love.update(delta)
 end
 
 function love.draw()
+	love.graphics.setFont(fonts.small.font)
+
 	love.graphics.printf(
 		"FPS: " .. love.timer.getFPS(),
-		love.graphics.newFont(16),
+		fonts.small.font,
 		10,
 		love.graphics.getHeight() - 30,
 		love.graphics.getWidth()
